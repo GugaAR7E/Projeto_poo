@@ -1,0 +1,120 @@
+import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
+
+
+public class Menu {
+
+    Scanner entrada = new Scanner(System.in);
+    Impressora impressora = new Impressora();
+
+    public void executarMenu() {
+
+        int opcao;
+
+        do {
+            System.out.println("\n SISTEMA IMPRESSORA ELGIN ");
+            System.out.println("1 - Configurar conexão");
+            System.out.println("2 - Abrir conexão");
+            System.out.println("3 - Fechar conexão");
+            System.out.println("4 - Imprimir texto");
+            System.out.println("5 - Imprimir QR Code");
+            System.out.println("6 - Imprimir código de barras");
+            System.out.println("7 - Imprimir XML SAT");
+            System.out.println("8 - Imprimir XML de cancelamento SAT");
+            System.out.println("9 - Abrir gaveta");
+            System.out.println("10 - Sinal sonoro");
+            System.out.println("0 - Sair");
+            System.out.print("Escolha uma opção: ");
+
+            opcao = entrada.nextInt();
+            entrada.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("Configuração de conexão");
+                    break;
+
+                case 2:
+                    impressora.AbreConexaoImpressora();
+                    break;
+
+                case 3:
+                    impressora.FechaConexaoImpressora();
+                    break;
+
+                case 4:
+                    System.out.print("Digite o texto: ");
+                    impressora.ImpressaoTexto(entrada.nextLine());
+                    break;
+
+                case 5:
+                    System.out.print("Digite os dados do QR Code: ");
+                    impressora.ImpressaoQRCode(entrada.nextLine());
+                    break;
+
+                case 6:
+                    System.out.print("Digite os dados do código de barras: ");
+                    impressora.ImpressaoCodigoBarras(entrada.nextLine());
+                    break;
+
+                case 7:
+                    System.out.print("Digite o caminho do XML SAT: ");
+                    impressora.ImprimeXMLSAT(entrada.nextLine());
+                    break;
+
+                case 8:
+                    System.out.print("Digite o caminho do XML de cancelamento: ");
+                    impressora.ImprimeXMLCancelamentoSAT(entrada.nextLine());
+                    break;
+
+                case 9:
+                    impressora.AbreGaveta();
+                    break;
+
+                case 10:
+                    impressora.SinalSonoro();
+                    break;
+
+                case 0:
+                    System.out.println("encerrando o sistema...");
+                    break;
+
+                default:
+                    System.out.println("opção inválida");
+            }
+
+        } while (opcao != 0);
+    }
+
+    private void imprimirXML() {
+
+        System.out.print("Digite o caminho do XML SAT: ");
+        String caminho = entrada.nextLine();
+
+        try (FileInputStream arquivo = new FileInputStream(caminho)) {
+            impressora.ImprimeXMLSAT(caminho);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Erro: arquivo XML não encontrado!");
+        } catch (Exception e) {
+            System.out.println("Erro ao acessar o arquivo XML.");
+        }
+    }
+
+    private void imprimirXMLCancelamento() {
+
+        System.out.print("Digite o caminho do XML de cancelamento: ");
+        String caminho = entrada.nextLine();
+
+        try (FileInputStream arquivo = new FileInputStream(caminho)) {
+            impressora.ImprimeXMLCancelamentoSAT(caminho);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Erro: arquivo XML não encontrado!");
+        } catch (Exception e) {
+            System.out.println("Erro ao acessar o arquivo XML.");
+        }
+    }
+}
