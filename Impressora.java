@@ -4,24 +4,26 @@ public class Impressora {
     private String tipoConexao;
     private String modelo;
     private String conexao;
-    private int parametro;
+    private int param;
 
     private boolean conexaoAberta = false;
 
     private static final String ASSINATURA_QR_CODE =
             "Q5DLkpdRijIRGY6YSSNsTWK1TztHL1vD0V1Jc4spo/CEUqICEb9SFy82ym8EhBRZjbh3btsZhF+sjHqEMR159i4agru9x6KsepK/q0E2e5xlU5cv3m1woYfgHyOkWDNcSdMsS6bBh2Bpq6s89yJ9Q6qh/J8YHi306ce9Tqb/drKvN2XdE5noRSS32TAWuaQEVd7u+TrvXlOQsE3fHR1D5f1saUwQLPSdIv01NF6Ny7jZwjCwv1uNDdGZONJdlTJ6p0ccqnZvuE70aHOI09elpjEO6Cd+orI7XHHrFCwhFhAcbalc+ZfO5b/+vkyAHS6CYVFCDtYR9Hi5qgdk31v23w==";
 
-    public void configurarConexao(String tipoConexao, String modelo, String conexao, int parametro) {
+    public void configurarConexao(String tipoConexao, String modelo, String conexao, int param) {
 
         this.tipoConexao = tipoConexao;
         this.modelo = modelo;
         this.conexao = conexao;
-        this.parametro = parametro;
+        this.param = param;
 
         System.out.println("Configurações salvas com sucesso!");
     }
 
     public void AbreConexaoImpressora() {
+
+        conexaoAberta = false;
 
         try {
 
@@ -29,19 +31,22 @@ public class Impressora {
                     Integer.parseInt(tipoConexao),
                     modelo,
                     conexao,
-                    parametro
+                    param
             );
 
             if (ret == 0) {
                 conexaoAberta = true;
                 System.out.println("Conexão aberta com sucesso!");
             } else {
+                conexaoAberta = false;
                 System.out.println("Erro ao abrir conexão. Retorno: " + ret);
             }
 
         } catch (LinkageError e) {
+            conexaoAberta = false;
             System.out.println("Erro: não foi possível carregar a DLL da impressora.");
         } catch (Exception e) {
+            conexaoAberta = false;
             System.out.println("Erro ao abrir conexão: " + e.getMessage());
         }
     }
@@ -71,6 +76,7 @@ public class Impressora {
     }
 
     public void ImpressaoTexto(String texto) {
+
 
         if (conexaoAberta == true) {
 

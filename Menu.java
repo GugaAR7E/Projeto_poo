@@ -32,10 +32,29 @@ public class Menu {
             entrada.nextLine();
 
             switch (opcao) {
-                case 1:
-                    System.out.println("Configuração de conexão");
-                    break;
 
+                case 1:
+                    System.out.println("Tipo de conexão:");
+                    System.out.println("1 - USB");
+                    System.out.println("2 - Serial");
+                    System.out.println("3 - Rede");
+                    System.out.println("4 - Bluetooth");
+
+                    System.out.print("Escolha: ");
+                    String tipo = entrada.nextLine();
+
+                    System.out.print("Modelo da impressora (i8 ou i9): ");
+                    String modelo = entrada.nextLine();
+
+                    System.out.print("Conexão (USB, COM2 ou IP): ");
+                    String conexao = entrada.nextLine();
+
+                    System.out.print("Parâmetro: ");
+                    int param = entrada.nextInt();
+                    entrada.nextLine();
+
+                    impressora.configurarConexao(tipo, modelo, conexao, param);
+                    break;
                 case 2:
                     impressora.AbreConexaoImpressora();
                     break;
