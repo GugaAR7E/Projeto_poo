@@ -130,7 +130,7 @@ public class Impressora {
 
             try {
 
-                int ret = ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(8, dados, 100, 2, 4);
+                int ret = ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(8, "{A12345678912", 100, 2, 3);
 
                 if (ret == 0) {
                     ImpressoraDLL.INSTANCE.Corte(5);
