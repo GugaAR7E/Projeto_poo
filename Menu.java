@@ -85,15 +85,13 @@ public class Menu {
 
                 case 7:
                     if (impressora.verificarConexao()) {
-                        System.out.print("Digite o caminho do XML SAT: ");
-                        impressora.ImprimeXMLSAT(entrada.nextLine());
+                        imprimirXML();
                     }
                     break;
 
                 case 8:
                     if (impressora.verificarConexao()) {
-                        System.out.print("Digite o caminho do XML de cancelamento: ");
-                        impressora.ImprimeXMLCancelamentoSAT(entrada.nextLine());
+                        imprimirXMLCancelamento();
                     }
                     break;
 
@@ -118,31 +116,33 @@ public class Menu {
 
     private void imprimirXML() {
 
-        System.out.print("Digite o caminho do XML SAT: ");
-        String caminho = entrada.nextLine();
+        String caminho = "XMLSAT.xml";
 
         try (FileInputStream arquivo = new FileInputStream(caminho)) {
+
             impressora.ImprimeXMLSAT(caminho);
 
         } catch (FileNotFoundException e) {
-            System.out.println("Erro: arquivo XML não encontrado!");
+            System.out.println("Erro: arquivo XML SAT não encontrado!");
+
         } catch (Exception e) {
-            System.out.println("Erro ao acessar o arquivo XML.");
+            System.out.println("Erro ao acessar o arquivo XML SAT.");
         }
     }
 
     private void imprimirXMLCancelamento() {
 
-        System.out.print("Digite o caminho do XML de cancelamento: ");
-        String caminho = entrada.nextLine();
+        String caminho = "CANC_SAT.xml";
 
         try (FileInputStream arquivo = new FileInputStream(caminho)) {
+
             impressora.ImprimeXMLCancelamentoSAT(caminho);
 
         } catch (FileNotFoundException e) {
-            System.out.println("Erro: arquivo XML não encontrado!");
+            System.out.println("Erro: arquivo XML de cancelamento não encontrado!");
+
         } catch (Exception e) {
-            System.out.println("Erro ao acessar o arquivo XML.");
+            System.out.println("Erro ao acessar o arquivo XML de cancelamento.");
         }
     }
 }
