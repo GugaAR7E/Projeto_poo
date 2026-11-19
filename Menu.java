@@ -64,28 +64,37 @@ public class Menu {
                     break;
 
                 case 4:
-                    System.out.print("Digite o texto: ");
-                    impressora.ImpressaoTexto(entrada.nextLine());
+                    if (impressora.verificarConexao()) {
+                        System.out.print("Digite o texto: ");
+                        impressora.ImpressaoTexto(entrada.nextLine());
+                    }
                     break;
 
                 case 5:
-                    System.out.print("Digite os dados do QR Code: ");
-                    impressora.ImpressaoQRCode(entrada.nextLine());
+                    if (impressora.verificarConexao()) {
+                        System.out.print("Digite os dados do QR Code: ");
+                        impressora.ImpressaoQRCode(entrada.nextLine());
+                    }
                     break;
 
                 case 6:
-                    System.out.print("Digite os dados do código de barras: ");
-                    impressora.ImpressaoCodigoBarras(entrada.nextLine());
+                    if (impressora.verificarConexao()) {
+                        impressora.ImpressaoCodigoBarras();
+                    }
                     break;
 
                 case 7:
-                    System.out.print("Digite o caminho do XML SAT: ");
-                    impressora.ImprimeXMLSAT(entrada.nextLine());
+                    if (impressora.verificarConexao()) {
+                        System.out.print("Digite o caminho do XML SAT: ");
+                        impressora.ImprimeXMLSAT(entrada.nextLine());
+                    }
                     break;
 
                 case 8:
-                    System.out.print("Digite o caminho do XML de cancelamento: ");
-                    impressora.ImprimeXMLCancelamentoSAT(entrada.nextLine());
+                    if (impressora.verificarConexao()) {
+                        System.out.print("Digite o caminho do XML de cancelamento: ");
+                        impressora.ImprimeXMLCancelamentoSAT(entrada.nextLine());
+                    }
                     break;
 
                 case 9:

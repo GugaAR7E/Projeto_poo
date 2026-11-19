@@ -124,13 +124,15 @@ public class Impressora {
         }
     }
 
-    public void ImpressaoCodigoBarras(String dados) {
+    public void ImpressaoCodigoBarras() {
 
         if (conexaoAberta == true) {
 
             try {
 
-                int ret = ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(8, "{A12345678912", 100, 2, 3);
+                int ret = ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(
+                        8, "{A12345678912", 100, 2, 3
+                );
 
                 if (ret == 0) {
                     ImpressoraDLL.INSTANCE.Corte(5);
@@ -242,5 +244,14 @@ public class Impressora {
         } else {
             System.out.println("Não existe uma conexão em aberto.");
         }
+    }
+    public boolean verificarConexao() {
+
+        if (conexaoAberta == false) {
+            System.out.println("ERRO: Impressora não está conectada!");
+            return false;
+        }
+
+        return true;
     }
 }
