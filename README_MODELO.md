@@ -1,86 +1,101 @@
-# 🖨️ Sistema de Controle de Impressora Elgin
-### *(Troque pelo nome do seu projeto)*
----
+Documentação de projeto
 
-## 📘 Sobre o Projeto
+# **🖨️ Sistema de Controle de Impressora Elgin**
 
-*(Explique em 3 a 5 linhas o que o sistema faz, quem desenvolveu e em qual disciplina.)*
-Exemplo: Este projeto foi desenvolvido por alunos para se comunicar com uma impressora térmica **Elgin i8/i9** usando a biblioteca `E1_Impressora01.dll`. O sistema tem login e um menu com operações de impressão. Faz parte da disciplina de **Programação Orientada a Objetos**.
+## **📘 Sobre o Projeto**
 
----
+Este projeto foi desenvolvido para realizar a comunicação com as impressoras térmicas **Elgin i8/i9**, utilizando a biblioteca `E1_Impressora01.dll`. O sistema conta com autenticação por login, permitindo até 3 tentativas, além de um menu interativo com 12 funcionalidades de impressão e gerenciamento da impressora.
 
-## 🧰 Tecnologias Utilizadas
+O desenvolvimento foi realizado como atividade prática da disciplina de **Programação Orientada a Objetos**, aplicando conceitos de Java e integração com bibliotecas externas.
 
-- **Java** *(informe a versão que você usou)*
-- **IntelliJ IDEA** *(ou a IDE que usou)*
-- **JNA 5.15.0** (comunicação com a DLL)
-- **DLL E1_Impressora01** (SDK da Elgin)
-- **Impressora Elgin i8 ou i9** *(informe qual você usou nos testes)*
+## **🧰 Tecnologias Utilizadas**
 
----
+- **Java 17**
+- **IntelliJ IDEA**
+- **JNA 5.15.0** (integração entre Java e DLL)
+- **DLL E1_Impressora01** (biblioteca de comunicação da Elgin)
+- **Impressora térmica Elgin i8 ou i9**
 
-## 📁 Estrutura do Projeto
-
-*(Liste suas pastas e classes e diga o que cada uma faz.)*
+## **📁 Estrutura do Projeto**
 
 ```
-/src                      → Código-fonte
-   Main.java              → Inicia o programa
-   (suas classes aqui)    → Descreva o papel de cada uma
-/Bibliotecas E1 Impressora → DLLs da Elgin (x64 e x86)
-/libs Java                → jna-5.15.0.jar
+/src
+   Main.java          → Inicialização do sistema, login e menu principal
+   Usuario.java       → Armazena e valida as credenciais de acesso
+   Impressora.java    → Gerencia a conexão e executa os comandos da impressora
+   ImpressoraDLL.java → Interface JNA disponibilizada pela Elgin
+/Bibliotecas E1 Impressora → Bibliotecas DLL da Elgin (x64 e x86)
+/libs Java                  → jna-5.15.0.jar
+XMLSAT.xml                  → Arquivo XML de exemplo para venda
+CANC_SAT.xml                → Arquivo XML de exemplo para cancelamento
 ```
 
----
+## **⚙️ Instalação e Execução**
 
-## ⚙️ Instalação e Execução
+### **1. Baixar o projeto**
 
-*(Escreva o passo a passo para outra pessoa rodar o projeto, como no exemplo abaixo.)*
-
-### 1. Baixar o projeto
-1. Acesse o repositório no GitHub.
+1. Entre no repositório do GitHub.
 2. Clique em **Code → Download ZIP**.
-3. Extraia o arquivo.
+3. Extraia os arquivos para uma pasta de sua preferência.
 
-### 2. Abrir no IntelliJ IDEA
-1. **File → Open** e escolha a pasta extraída.
-2. Em **File → Project Structure → Libraries**, confirme que o `jna-5.15.0.jar` está adicionado.
-3. Conecte e ligue a impressora.
-4. Abra `Main.java` e clique em ▶️ **Run**.
+### **2. Executar pelo IntelliJ IDEA**
 
----
+1. Acesse **File → Open** e selecione a pasta do projeto.
+2. Em **File → Project Structure → Libraries**, verifique se o arquivo `jna-5.15.0.jar` está configurado.
+3. Em **Run → Edit Configurations**, confira se o *Working directory* aponta para a pasta principal do projeto.
+4. Ligue e conecte a impressora ao computador.
+5. Abra o arquivo `Main.java` e pressione ▶️ **Run**.
 
-## 🔐 Login
+### **Abrir pelo Visual Studio Code**
 
-*(Informe o usuário e a senha de teste e quantas tentativas são permitidas.)*
+1. Abra a pasta raiz do projeto, onde estão localizadas as pastas `src`, `libs Java` e `Bibliotecas E1 Impressora`.
+2. Instale as extensões **Extension Pack for Java** e **Debugger for Java**.
+3. O JNA é configurado pelo arquivo `.vscode/settings.json`. Caso necessário, utilize o comando **Java: Clean Java Language Server Workspace** e abra novamente a pasta.
+4. Acesse `src/Main.java` e clique em **Run**.
 
----
+## **🔐 Login**
 
-## 📋 Funcionalidades do Menu
+- Usuário: `admin`
+- Senha: `1234`
+- Limite de 3 tentativas de acesso.
 
-| Opção | O que faz |
-|---|---|
-| 1 | *(descreva)* |
-| 2 | *(descreva)* |
-| ... | ... |
+## **📋 Funcionalidades do Menu**
 
----
+| Opção | Descrição                                                             |
+| ----- |-----------------------------------------------------------------------|
+| 1     | Definir as configurações de conexão (tipo, modelo, porta e parâmetro) |
+| 2     | Abrir conexão com a impressora                                        |
+| 3     | Fechar a conexão com a impressora                                     |
+| 4     | Impressão de textos                                                   |
+| 5     | Gerar e imprimir QR Codes                                             |
+| 6     | Imprimir códigos de barras                                            |
+| 7     | Imprimir XML SAT (cupom de venda)                                     |
+| 8     | Imprimir XML de cancelamento SAT                                      |
+| 9     | Abertura da gaveta                                                    |
+| 10    | Emitir sinal sonoro (bip)                                             |
+| 0     | Encerrar o programa                                                   |
 
-## 🧪 Testes Realizados
+Caso a conexão não esteja ativa, as opções de 3 a 12 exibem a mensagem "Conexão fechada. Abra a conexão antes." e retornam ao menu principal sem solicitar informações adicionais.
 
-*(Liste o que você testou e o resultado. Ex.: login com senha errada 3 vezes, impressão de texto, QR Code, código de barras, bip, gaveta.)*
+## **🧪 Testes Realizados**
 
----
+- Verificação do bloqueio do sistema após 3 tentativas de login incorretas.
+- Validação do acesso com credenciais corretas na primeira e na segunda tentativa.
+- Teste de execução das funcionalidades sem conexão ativa, verificando a exibição da mensagem de aviso.
+- Tratamento de entradas inválidas, como letras em campos que exigem valores numéricos, evitando o encerramento inesperado do programa.
+- Testes práticos de abertura e fechamento da conexão.
+- Testes de impressão de textos, QR Codes, códigos de barras e arquivos XML.
+- Verificação do funcionamento do bip e da abertura da gaveta diretamente na impressora.
 
-## 📚 Documentação Adicional
+## **📚 Documentação Adicional**
 
-- Manual da impressora Elgin
-- Documentação do SDK E1_Impressora
+- Manual de utilização da impressora Elgin.
+- [Documentação oficial do SDK E1_Impressora](https://elgindevelopercommunity.github.io/group___m1.html?utm_source=chatgpt.com).
 
----
+## **👥 Autores**
 
-## 👥 Autores
-*(em ordem alfabética)*
+- Gustavo Pereira
+- Gustavo Batista
+- Arthur Ulloa
+- Samuel Carvalho
 
-- Nome Completo
-- Nome Completo
