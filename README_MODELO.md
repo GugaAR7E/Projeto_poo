@@ -6,7 +6,7 @@ Documentação de projeto
 
 Esse projeto foi desenvolvido para realizar a comunicação com as impressoras térmicas **Elgin i8/i9**, utilizando a biblioteca `E1_Impressora01.dll`. O sistema conta com autenticação por login, permitindo até 3 tentativas, além de um menu interativo com 12 funcionalidades de impressão e gerenciamento da impressora.
 
-O desenvolvimento foi realizado como atividade prática da disciplina de **Programação Orientada a Objetos**, aplicando conceitos de Java e integração com bibliotecas externas.
+O desenvolvimento  foi realizado como atividade prática da disciplina de **Programação Orientada a Objetos**, aplicando conceitos de Java e integração com bibliotecas externas.
 
 ## **🧰 Tecnologias Utilizadas**
 
