@@ -28,8 +28,17 @@ public class Menu {
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
 
-            opcao = entrada.nextInt();
-            entrada.nextLine();
+            while (true) {
+                String valor = entrada.nextLine().trim();
+
+                try {
+                    opcao = Integer.parseInt(valor);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Entrada inválida! Digite apenas números inteiros.");
+                    System.out.print("Escolha uma opção: ");
+                }
+            }
 
             switch (opcao) {
 
