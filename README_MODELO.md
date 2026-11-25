@@ -94,8 +94,9 @@ Caso a conexão não esteja ativa, as opções de 3 a 12 exibem a mensagem "Cone
 
 ## **👥 Autores**
 
-- Gustavo Pereira
-- Gustavo Batista
 - Arthur Ulloa
+- Felipe Rocha
+- Gustavo Batista
+- Gustavo Pereira
 - Samuel Carvalho
 
